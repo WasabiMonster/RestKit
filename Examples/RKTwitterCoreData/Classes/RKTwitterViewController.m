@@ -33,7 +33,7 @@ static void RKTwitterShowAlertWithError(NSError *error)
     RKLogConfigureByName("RestKit/Network", RKLogLevelDebug);
 
     // Setup View and Table View
-    self.title = @"RestKit Tweets";
+    self.title = @"Test RestKit";
 
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Tweet"];
     NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
@@ -59,7 +59,7 @@ static void RKTwitterShowAlertWithError(NSError *error)
 - (void)loadData
 {
     // Load the object model via RestKit
-    [[RKObjectManager sharedManager] getObjectsAtPath:@"/status/user_timeline/RestKit" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [[RKObjectManager sharedManager] getObjectsAtPath:@"/api/v1/bar/?format=json" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         RKLogInfo(@"Load complete: Table should refresh...");
 
         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdatedAt"];

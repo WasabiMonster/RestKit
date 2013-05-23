@@ -45,7 +45,7 @@
     [super loadView];
 
     // Setup View and Table View
-    self.title = @"RestKit Tweets";
+    self.title = @"RestKit Tweets Again";
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadTimeline)];
