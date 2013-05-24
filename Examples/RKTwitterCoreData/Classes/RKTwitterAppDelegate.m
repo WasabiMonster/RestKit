@@ -22,7 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Initialize RestKit
-    NSURL *baseURL = [NSURL URLWithString:@"http://172.16.0.172:8000"]; // 172.16.0.172 // https://twitter.com
+    NSURL *baseURL = [NSURL URLWithString:@"http://172.16.0.217:8000"]; // https://twitter.com
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:baseURL];
 	
 	// ME: Authentication
@@ -30,7 +30,7 @@
 	[objectManager.HTTPClient setAuthorizationHeaderWithUsername:@"patrickwilson" password:@"lizard"];
     
     // HACK: Set User-Agent to Mac OS X so that Twitter will let us access the Timeline
-    [objectManager.HTTPClient setDefaultHeader:@"User-Agent" value:[NSString stringWithFormat:@"%@/%@ (Mac OS X %@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleExecutableKey] ?: [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleIdentifierKey], [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] ?: [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey], [[NSProcessInfo processInfo] operatingSystemVersionString]]];
+    /* [objectManager.HTTPClient setDefaultHeader:@"User-Agent" value:[NSString stringWithFormat:@"%@/%@ (Mac OS X %@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleExecutableKey] ?: [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleIdentifierKey], [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] ?: [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey], [[NSProcessInfo processInfo] operatingSystemVersionString]]]; */
 
     // Enable Activity Indicator Spinner
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
@@ -46,37 +46,38 @@
      name. This allows us to map back Twitter user objects directly onto NSManagedObject instances --
      there is no backing model class!
      */
-    RKEntityMapping *userMapping = [RKEntityMapping mappingForEntityForName:@"User" inManagedObjectStore:managedObjectStore];
+    /* RKEntityMapping *userMapping = [RKEntityMapping mappingForEntityForName:@"User" inManagedObjectStore:managedObjectStore];
     userMapping.identificationAttributes = @[ @"userID" ];
     [userMapping addAttributeMappingsFromDictionary:@{
      @"id": @"userID",
      @"screen_name": @"screenName",
     }];
     // If source and destination key path are the same, we can simply add a string to the array
-    [userMapping addAttributeMappingsFromArray:@[ @"name" ]];
+    [userMapping addAttributeMappingsFromArray:@[ @"name" ]]; */
 
-    RKEntityMapping *tweetMapping = [RKEntityMapping mappingForEntityForName:@"Tweet" inManagedObjectStore:managedObjectStore];
-    tweetMapping.identificationAttributes = @[ @"statusID" ];
-    [tweetMapping addAttributeMappingsFromDictionary:@{
-     @"id": @"statusID",
-     @"created_at": @"createdAt",
-     @"text": @"text",
-     @"url": @"urlString",
-     @"in_reply_to_screen_name": @"inReplyToScreenName",
-     @"favorited": @"isFavorited",
+    RKEntityMapping *barMapping = [RKEntityMapping mappingForEntityForName:@"Bar" inManagedObjectStore:managedObjectStore];
+    barMapping.identificationAttributes = @[ @"name" ];
+    [barMapping addAttributeMappingsFromDictionary:@{
+     @"name": @"name",
+     @"join_date": @"joinDate",
+     @"location": @"location",
+     @"phone": @"phone",
+     @"website": @"website",
      }];
-    [tweetMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"user" toKeyPath:@"user" withMapping:userMapping]];
+    //// [tweetMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"user" toKeyPath:@"user" withMapping:userMapping]];
 
     // Update date format so that we can parse Twitter dates properly
     // Wed Sep 29 15:31:08 +0000 2010
     [RKObjectMapping addDefaultDateFormatterForString:@"E MMM d HH:mm:ss Z y" inTimeZone:nil];
 
     // Register our mappings with the provider
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:tweetMapping
-                                                                                       pathPattern:@"/api/v1/bar/?format=json"
-                                                                                           keyPath:nil
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:barMapping
+                                                                                       pathPattern:nil
+																						   keyPath:@"objects"
                                                                                        statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     [objectManager addResponseDescriptor:responseDescriptor];
+	
+	// NSLog(@">>> %@", responseDescriptor.description);
 
     // Uncomment this to use XML, comment it to use JSON
     //  objectManager.acceptMIMEType = RKMIMETypeXML;
@@ -89,6 +90,9 @@
     //  2) Source JSON files are added to the 'Generate Seed Database' target to be copied into the bundle. This is required
     //      so that the object seeder can find the files when run in the simulator.    
 #ifdef RESTKIT_GENERATE_SEED_DB
+	
+	NSLog(@">>> RESTKIT_GENERATE_SEED_DB - YES");
+	
     RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelInfo);
     RKLogConfigureByName("RestKit/CoreData", RKLogLevelTrace);
     
@@ -100,12 +104,12 @@
     NSString *seedStorePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"RKSeedDatabase.sqlite"];
     RKManagedObjectImporter *importer = [[RKManagedObjectImporter alloc] initWithManagedObjectModel:managedObjectModel storePath:seedStorePath];
     [importer importObjectsFromItemAtPath:[[NSBundle mainBundle] pathForResource:@"restkit" ofType:@"json"]
-                              withMapping:tweetMapping
+                              withMapping:barMapping
                                   keyPath:nil
                                     error:&error];
     [importer importObjectsFromItemAtPath:[[NSBundle mainBundle] pathForResource:@"users" ofType:@"json"]
-                              withMapping:userMapping
-                                  keyPath:@"user"
+                              withMapping:barMapping
+                                  keyPath:@"name"
                                     error:&error];
     BOOL success = [importer finishImporting:&error];
     if (success) {
@@ -114,9 +118,14 @@
         RKLogError(@"Failed to finish import and save seed database due to error: %@", error);
     }
 
+	// TODO: Start with authentication/view here...
+	
     // Clear out the root view controller
     [self.window setRootViewController:[UIViewController new]];
 #else
+	
+	NSLog(@">>> RESTKIT_GENERATE_SEED_DB - NO");
+	
     /**
      Complete Core Data stack initialization
      */
@@ -124,6 +133,12 @@
     NSString *storePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"RKTwitter.sqlite"];
     NSString *seedPath = [[NSBundle mainBundle] pathForResource:@"RKSeedDatabase" ofType:@"sqlite"];
     NSError *error;
+	
+	/* NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+							 [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+							 [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil]; */
+	
+	
     NSPersistentStore *persistentStore = [managedObjectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:seedPath withConfiguration:nil options:nil error:&error];
     NSAssert(persistentStore, @"Failed to add persistent store with error: %@", error);
     

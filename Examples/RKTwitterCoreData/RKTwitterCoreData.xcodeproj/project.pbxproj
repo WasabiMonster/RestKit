@@ -31,7 +31,6 @@
 		25F2A1811322D59400A33DE4 /* RKTwitterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* RKTwitterAppDelegate.m */; };
 		25F2A1821322D59400A33DE4 /* RKTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* RKTwitterViewController.m */; };
 		25F2A1841322D59400A33DE4 /* RKTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538E813123419EC00ACB5D7 /* RKTweet.m */; };
-		25F2A1851322D59400A33DE4 /* RKTwitterCoreData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3F94E0C6125BA8C0001E8585 /* RKTwitterCoreData.xcdatamodel */; };
 		25F2A1871322D59400A33DE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		25F2A1881322D59400A33DE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		25F2A1891322D59400A33DE4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -50,10 +49,11 @@
 		3F3CE40F125B9B450083FDCB /* BG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F3CE40B125B9B450083FDCB /* BG@2x.png */; };
 		3F3CE410125B9B450083FDCB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F3CE40C125B9B450083FDCB /* Default.png */; };
 		3F3CE411125B9B450083FDCB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F3CE40D125B9B450083FDCB /* Default@2x.png */; };
-		3F94E0C7125BA8C0001E8585 /* RKTwitterCoreData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3F94E0C6125BA8C0001E8585 /* RKTwitterCoreData.xcdatamodel */; };
 		3FB46641131D78A400E37C51 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB46640131D78A400E37C51 /* libxml2.dylib */; };
 		8452D3F9128244D90069F4A9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8452D3F8128244D90069F4A9 /* CFNetwork.framework */; };
 		8452D3FD128244E60069F4A9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8452D3FC128244E60069F4A9 /* MobileCoreServices.framework */; };
+		8B903A75174FC79E009C0505 /* OMBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B903A74174FC79E009C0505 /* OMBar.m */; };
+		8B903A7B174FDA22009C0505 /* RKTwitterCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B903A78174FDA22009C0505 /* RKTwitterCoreData.xcdatamodeld */; };
 		CD39C14E14EEED8700E84874 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD39C14D14EEED8700E84874 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -130,11 +130,13 @@
 		3F3CE40B125B9B450083FDCB /* BG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BG@2x.png"; sourceTree = "<group>"; };
 		3F3CE40C125B9B450083FDCB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3F3CE40D125B9B450083FDCB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		3F94E0C6125BA8C0001E8585 /* RKTwitterCoreData.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = RKTwitterCoreData.xcdatamodel; sourceTree = "<group>"; };
 		3FB46640131D78A400E37C51 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		8452D3F8128244D90069F4A9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		8452D3FC128244E60069F4A9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		8B34FD36174EC57400734C5A /* OMBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMBar.h; sourceTree = "<group>"; };
+		8B903A73174FC79E009C0505 /* OMBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMBar.h; sourceTree = "<group>"; };
+		8B903A74174FC79E009C0505 /* OMBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMBar.m; sourceTree = "<group>"; };
+		8B903A79174FDA22009C0505 /* RKTwitterCoreData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "RKTwitterCoreData 2.xcdatamodel"; sourceTree = "<group>"; };
+		8B903A7A174FDA22009C0505 /* RKTwitterCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RKTwitterCoreData.xcdatamodel; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* RKTwitter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RKTwitter-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		CD39C14D14EEED8700E84874 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -181,13 +183,14 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8B903A73174FC79E009C0505 /* OMBar.h */,
+				8B903A74174FC79E009C0505 /* OMBar.m */,
 				1D3623240D0F684500981E51 /* RKTwitterAppDelegate.h */,
 				1D3623250D0F684500981E51 /* RKTwitterAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* RKTwitterViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* RKTwitterViewController.m */,
 				2538E812123419EC00ACB5D7 /* RKTweet.h */,
 				2538E813123419EC00ACB5D7 /* RKTweet.m */,
-				8B34FD36174EC57400734C5A /* OMBar.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -247,7 +250,7 @@
 				3F3CE3FA125B9A6E0083FDCB /* listbg.png */,
 				3F3CE3FB125B9A6E0083FDCB /* listbg@2x.png */,
 				8D1107310486CEB800E47090 /* RKTwitter-Info.plist */,
-				3F94E0C6125BA8C0001E8585 /* RKTwitterCoreData.xcdatamodel */,
+				8B903A78174FDA22009C0505 /* RKTwitterCoreData.xcdatamodeld */,
 				2536AF3B16397A0200AD803D /* MainStoryboard.storyboard */,
 			);
 			path = Resources;
@@ -417,7 +420,8 @@
 				1D3623260D0F684500981E51 /* RKTwitterAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* RKTwitterViewController.m in Sources */,
 				2538E814123419EC00ACB5D7 /* RKTweet.m in Sources */,
-				3F94E0C7125BA8C0001E8585 /* RKTwitterCoreData.xcdatamodel in Sources */,
+				8B903A75174FC79E009C0505 /* OMBar.m in Sources */,
+				8B903A7B174FDA22009C0505 /* RKTwitterCoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,7 +433,6 @@
 				25F2A1811322D59400A33DE4 /* RKTwitterAppDelegate.m in Sources */,
 				25F2A1821322D59400A33DE4 /* RKTwitterViewController.m in Sources */,
 				25F2A1841322D59400A33DE4 /* RKTweet.m in Sources */,
-				25F2A1851322D59400A33DE4 /* RKTwitterCoreData.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +584,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8B903A78174FDA22009C0505 /* RKTwitterCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8B903A79174FDA22009C0505 /* RKTwitterCoreData 2.xcdatamodel */,
+				8B903A7A174FDA22009C0505 /* RKTwitterCoreData.xcdatamodel */,
+			);
+			currentVersion = 8B903A79174FDA22009C0505 /* RKTwitterCoreData 2.xcdatamodel */;
+			path = RKTwitterCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }

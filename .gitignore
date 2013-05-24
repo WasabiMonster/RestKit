@@ -25,3 +25,12 @@ test-reports/
 
 # CocoaPods
 Pods
+
+local_settings.py
+*.log
+*.pot
+*.pyc
+.idea/*
+.idea
+*.iml
+*.xcuserstate

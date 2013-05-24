@@ -28,6 +28,8 @@ static void RKTwitterShowAlertWithError(NSError *error)
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	NSLog(@">>> viewDidLoad");
 
     // Set debug logging level. Set to 'RKLogLevelTrace' to see JSON payload
     RKLogConfigureByName("RestKit/Network", RKLogLevelDebug);
