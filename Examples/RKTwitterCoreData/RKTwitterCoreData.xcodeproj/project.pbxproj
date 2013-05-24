@@ -54,6 +54,7 @@
 		8452D3FD128244E60069F4A9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8452D3FC128244E60069F4A9 /* MobileCoreServices.framework */; };
 		8B903A75174FC79E009C0505 /* OMBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B903A74174FC79E009C0505 /* OMBar.m */; };
 		8B903A7B174FDA22009C0505 /* RKTwitterCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B903A78174FDA22009C0505 /* RKTwitterCoreData.xcdatamodeld */; };
+		8B903A83174FF247009C0505 /* OMAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B903A82174FF247009C0505 /* OMAuthViewController.m */; };
 		CD39C14E14EEED8700E84874 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD39C14D14EEED8700E84874 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +138,8 @@
 		8B903A74174FC79E009C0505 /* OMBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMBar.m; sourceTree = "<group>"; };
 		8B903A79174FDA22009C0505 /* RKTwitterCoreData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "RKTwitterCoreData 2.xcdatamodel"; sourceTree = "<group>"; };
 		8B903A7A174FDA22009C0505 /* RKTwitterCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RKTwitterCoreData.xcdatamodel; sourceTree = "<group>"; };
+		8B903A81174FF247009C0505 /* OMAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMAuthViewController.h; sourceTree = "<group>"; };
+		8B903A82174FF247009C0505 /* OMAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMAuthViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* RKTwitter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RKTwitter-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		CD39C14D14EEED8700E84874 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -191,6 +194,8 @@
 				28D7ACF70DDB3853001CB0EB /* RKTwitterViewController.m */,
 				2538E812123419EC00ACB5D7 /* RKTweet.h */,
 				2538E813123419EC00ACB5D7 /* RKTweet.m */,
+				8B903A81174FF247009C0505 /* OMAuthViewController.h */,
+				8B903A82174FF247009C0505 /* OMAuthViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -422,6 +427,7 @@
 				2538E814123419EC00ACB5D7 /* RKTweet.m in Sources */,
 				8B903A75174FC79E009C0505 /* OMBar.m in Sources */,
 				8B903A7B174FDA22009C0505 /* RKTwitterCoreData.xcdatamodeld in Sources */,
+				8B903A83174FF247009C0505 /* OMAuthViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
