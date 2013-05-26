@@ -33,15 +33,15 @@
 	
 	// Or this? http://www.wannabegeek.com/?p=168
 	
-	UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myRightAction)];
-	[recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+	UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myLeftAction)];
+	[recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
 	//[self addGestureRecognizer:recognizer];
 	[[self view] addGestureRecognizer:recognizer];
 }
 
-- (void)myRightAction
+- (void)myLeftAction
 {
-	NSLog(@">>> myRightAction");
+	NSLog(@">>> myLeftAction");
 	[self performSegueWithIdentifier: @"segueToTable" sender: self];
 }
 
