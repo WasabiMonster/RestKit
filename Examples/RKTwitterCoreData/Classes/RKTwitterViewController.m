@@ -87,7 +87,8 @@ static void RKTwitterShowAlertWithError(NSError *error)
 // TODO: Unhighlight
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	// TODO: Get Bar Model object from RK here....
-    OMBar *bar = nil; // [recipesController objectInRecipesAtIndex:indexPath.row];
+    // OMBar *bar = nil; // [recipesController objectInRecipesAtIndex:indexPath.row];
+	OMBar *bar = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
 	NSLog(@">>> Touched %i", indexPath.row);
 	
