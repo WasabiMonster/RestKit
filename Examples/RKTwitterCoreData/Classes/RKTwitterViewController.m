@@ -7,14 +7,15 @@
 //
 
 #import "RKTwitterViewController.h"
-#import "RKTweet.h"
+#import "OMBar.h"
+#import "OMBarDetailViewController.h"
 
 static void RKTwitterShowAlertWithError(NSError *error)
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                     message:[error localizedDescription]
-                                                    delegate:nil
-                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc]	initWithTitle:@"Error"
+												message:[error localizedDescription]
+												delegate:nil
+												cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 }
 
@@ -28,25 +29,27 @@ static void RKTwitterShowAlertWithError(NSError *error)
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	NSLog(@">>> viewDidLoad");
 
+	// self.tableView.allowsSelection = YES; // Worked!!!
+	
     // Set debug logging level. Set to 'RKLogLevelTrace' to see JSON payload
     RKLogConfigureByName("RestKit/Network", RKLogLevelDebug);
 
     // Setup View and Table View
     self.title = @"Test RestKit";
 
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Tweet"];
-    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
+    // Core data fetch/pull....
+	NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Bar"];
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"joinDate" ascending:NO];
     fetchRequest.sortDescriptors = @[descriptor];
     NSError *error = nil;
-
+	
     // Setup fetched results
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:[RKManagedObjectStore defaultStore].mainQueueManagedObjectContext
-                                                                          sectionNameKeyPath:nil
-                                                                                   cacheName:nil];
+																		sectionNameKeyPath:nil
+																		cacheName:nil];
+	
     [self.fetchedResultsController setDelegate:self];
     BOOL fetchSuccessful = [self.fetchedResultsController performFetch:&error];
     NSAssert([[self.fetchedResultsController fetchedObjects] count], @"Seeding didn't work...");
@@ -63,6 +66,7 @@ static void RKTwitterShowAlertWithError(NSError *error)
     // Load the object model via RestKit
     [[RKObjectManager sharedManager] getObjectsAtPath:@"/api/v1/bar/?format=json" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         RKLogInfo(@"Load complete: Table should refresh...");
+		// NSLog(@">>> mappingResult: %@", mappingResult.array);
 
         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdatedAt"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -79,13 +83,33 @@ static void RKTwitterShowAlertWithError(NSError *error)
     [self loadData];
 }
 
+
+// TODO: Unhighlight
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	// TODO: Get Bar Model object from RK here....
+    OMBar *bar = nil; // [recipesController objectInRecipesAtIndex:indexPath.row];
+	
+	NSLog(@">>> Touched %i", indexPath.row);
+	
+    [self showBarDetail:bar];
+}
+
+- (void)showBarDetail:(OMBar *)bar
+{
+	NSLog(@">>> showBarDetail() [RKObjectManager sharedManager].description: %@", [RKObjectManager sharedManager].description);
+    OMBarDetailViewController *detailViewController = [[OMBarDetailViewController alloc] initWithBar:bar];
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    // [detailViewController release];
+}
+
+
 #pragma mark UITableViewDelegate methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RKTweet *status = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    CGSize size = [[status text] sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(300, 9000)];
-    return size.height + 10;
+    OMBar *status = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    CGSize size = [[status name] sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(300, 9000)];
+    return size.height + 40;
 }
 
 #pragma mark UITableViewDataSource methods
@@ -103,7 +127,7 @@ static void RKTwitterShowAlertWithError(NSError *error)
     if (nil == dateString) {
         dateString = @"Never";
     }
-    return [NSString stringWithFormat:@"Last Load: %@", dateString];
+    return [NSString stringWithFormat:@"Last Loaded: %@", dateString];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,8 +141,8 @@ static void RKTwitterShowAlertWithError(NSError *error)
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"listbg.png"]];
     }
-    RKTweet *status = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = status.text;
+    OMBar *status = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = status.name;
     return cell;
 }
 
@@ -126,6 +150,7 @@ static void RKTwitterShowAlertWithError(NSError *error)
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
+	NSLog(@">>> controllerDidChangeContent..."); // Fires only when the table has changed
     [self.tableView reloadData];
 }
 

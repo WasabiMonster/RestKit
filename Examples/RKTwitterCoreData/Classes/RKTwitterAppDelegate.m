@@ -22,7 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Initialize RestKit
-    NSURL *baseURL = [NSURL URLWithString:@"http://192.168.1.6:8000"]; // https://twitter.com
+    NSURL *baseURL = [NSURL URLWithString:@"http://172.16.0.51:8000"]; // https://twitter.com
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:baseURL];
 	
 	// ME: Authentication
@@ -104,13 +104,13 @@
     NSString *seedStorePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"RKSeedDatabase.sqlite"];
     RKManagedObjectImporter *importer = [[RKManagedObjectImporter alloc] initWithManagedObjectModel:managedObjectModel storePath:seedStorePath];
     [importer importObjectsFromItemAtPath:[[NSBundle mainBundle] pathForResource:@"restkit" ofType:@"json"]
-                              withMapping:barMapping
-                                  keyPath:nil
-                                    error:&error];
+								withMapping:barMapping
+								keyPath:nil
+								error:&error];
     [importer importObjectsFromItemAtPath:[[NSBundle mainBundle] pathForResource:@"users" ofType:@"json"]
-                              withMapping:barMapping
-                                  keyPath:@"name"
-                                    error:&error];
+								withMapping:barMapping
+								keyPath:@"name"
+								error:&error];
     BOOL success = [importer finishImporting:&error];
     if (success) {
         [importer logSeedingInfo];
@@ -144,6 +144,8 @@
     
     // Create the managed object contexts
     [managedObjectStore createManagedObjectContexts];
+	
+	// TODO: 
     
     // Configure a managed object cache to ensure we do not create duplicate objects
     managedObjectStore.managedObjectCache = [[RKInMemoryManagedObjectCache alloc] initWithManagedObjectContext:managedObjectStore.persistentStoreManagedObjectContext];
