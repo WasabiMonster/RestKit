@@ -97,6 +97,7 @@ static void RKTwitterShowAlertWithError(NSError *error)
 
 - (void)showBarDetail:(OMBar *)bar
 {
+	// TODO: See Apple's way: https://developer.apple.com/videos/ios/ <-- passing data between scenes in storyboards
 	NSLog(@">>> showBarDetail() [RKObjectManager sharedManager].description: %@", [RKObjectManager sharedManager].description);
     OMBarDetailViewController *detailViewController = [[OMBarDetailViewController alloc] initWithBar:bar];
     [self.navigationController pushViewController:detailViewController animated:YES];
