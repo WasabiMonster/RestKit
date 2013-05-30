@@ -18,4 +18,14 @@
 @dynamic website;
 // TODO: Add hash and/or user
 
+/*
+ Initialize
+ */
+- (id)init {
+	if ((self = [super init])) {
+		NSLog(@">>> Init OMBar...");
+	}
+	return self;
+}
+
 @end
