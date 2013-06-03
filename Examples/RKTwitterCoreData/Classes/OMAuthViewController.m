@@ -7,6 +7,7 @@
 //
 
 #import "OMAuthViewController.h"
+#import "OMAuthViewLayout.h"
 
 @interface OMAuthViewController ()
 
@@ -33,16 +34,31 @@
 	
 	// Or this? http://www.wannabegeek.com/?p=168
 	
-	UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myLeftAction)];
+	UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipe)];
 	[recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
 	//[self addGestureRecognizer:recognizer];
 	[[self view] addGestureRecognizer:recognizer];
+	
+	// [self setAuthFields];
+	
+	OMAuthViewLayout *view = [[OMAuthViewLayout alloc] initWithFrame:CGRectMake(0, 0, 300, 250)];
+	view.backgroundColor = [UIColor grayColor];
+	
+	view.center = self.view.center;
+	
+	[self.view addSubview:view];
+	
+	
 }
 
-- (void)myLeftAction
+- (void)leftSwipe
 {
-	NSLog(@">>> myLeftAction");
 	[self performSegueWithIdentifier: @"segueToTable" sender: self];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning

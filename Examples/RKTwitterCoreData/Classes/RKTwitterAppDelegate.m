@@ -22,7 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Initialize RestKit
-    NSURL *baseURL = [NSURL URLWithString:@"http://172.16.0.115:8000"]; // https://twitter.com
+    NSURL *baseURL = [NSURL URLWithString:@"http://72.16.0.165:8000"]; // https://twitter.com
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:baseURL];
 	
 	// ME: Authentication
