@@ -120,7 +120,7 @@
 
 	// TODO: Start with authentication/view here...
 	
-    // Clear out the root view controller
+    // Clear out the root view controller?
     [self.window setRootViewController:[UIViewController new]];
 #else
 	

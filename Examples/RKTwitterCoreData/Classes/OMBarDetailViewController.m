@@ -25,7 +25,7 @@
 
 -(OMBarDetailViewController*)initWithBar:(OMBar*)aBar;
 {
-    self = [super initWithStyle:UITableViewStyleGrouped];
+    self = [super initWithStyle:UITableViewCellStyleValue2];
     if(self){
         self.bar = aBar;
         self.navigationItem.title = @"Bar Details";
@@ -47,6 +47,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+#warning This sucks
 	// TODO: See TableViewCellSubviews sample
 	NSLog(@">>> NEW VIEW!!!");
 	// Do any additional setup after loading the view.
