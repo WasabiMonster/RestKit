@@ -194,20 +194,20 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8B903A81174FF247009C0505 /* OMAuthViewController.h */,
+				8B903A82174FF247009C0505 /* OMAuthViewController.m */,
+				8B2A1B95175D3121009A6326 /* OMAuthViewLayout.h */,
+				8B2A1B96175D3121009A6326 /* OMAuthViewLayout.m */,
 				8B903A73174FC79E009C0505 /* OMBar.h */,
 				8B903A74174FC79E009C0505 /* OMBar.m */,
+				8B29C1C81755249A008F87AC /* OMBarDetailViewController.h */,
+				8B29C1C91755249A008F87AC /* OMBarDetailViewController.m */,
+				2538E812123419EC00ACB5D7 /* RKTweet.h */,
+				2538E813123419EC00ACB5D7 /* RKTweet.m */,
 				1D3623240D0F684500981E51 /* RKTwitterAppDelegate.h */,
 				1D3623250D0F684500981E51 /* RKTwitterAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* RKTwitterViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* RKTwitterViewController.m */,
-				2538E812123419EC00ACB5D7 /* RKTweet.h */,
-				2538E813123419EC00ACB5D7 /* RKTweet.m */,
-				8B903A81174FF247009C0505 /* OMAuthViewController.h */,
-				8B903A82174FF247009C0505 /* OMAuthViewController.m */,
-				8B29C1C81755249A008F87AC /* OMBarDetailViewController.h */,
-				8B29C1C91755249A008F87AC /* OMBarDetailViewController.m */,
-				8B2A1B95175D3121009A6326 /* OMAuthViewLayout.h */,
-				8B2A1B96175D3121009A6326 /* OMAuthViewLayout.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -235,13 +235,13 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				8BD66E0F175562E80000A23E /* Default-568h@2x.png */,
-				2538E7FF123417E500ACB5D7 /* RestKit.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
+				8BD66E0F175562E80000A23E /* Default-568h@2x.png */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				2538E7FF123417E500ACB5D7 /* RestKit.xcodeproj */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -249,8 +249,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* RKTwitter_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				32CA4F630368D1EE00C91783 /* RKTwitter_Prefix.pch */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -258,18 +258,18 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				25F2A2D813240CEC00A33DE4 /* RKSeedDatabase.sqlite */,
-				25F2A19A1322DCDC00A33DE4 /* users.json */,
-				25F2A1981322D93500A33DE4 /* restkit.json */,
 				3F3CE40A125B9B450083FDCB /* BG.png */,
 				3F3CE40B125B9B450083FDCB /* BG@2x.png */,
 				3F3CE40C125B9B450083FDCB /* Default.png */,
 				3F3CE40D125B9B450083FDCB /* Default@2x.png */,
 				3F3CE3FA125B9A6E0083FDCB /* listbg.png */,
 				3F3CE3FB125B9A6E0083FDCB /* listbg@2x.png */,
+				2536AF3B16397A0200AD803D /* MainStoryboard.storyboard */,
+				25F2A1981322D93500A33DE4 /* restkit.json */,
+				25F2A2D813240CEC00A33DE4 /* RKSeedDatabase.sqlite */,
 				8D1107310486CEB800E47090 /* RKTwitter-Info.plist */,
 				8B903A78174FDA22009C0505 /* RKTwitterCoreData.xcdatamodeld */,
-				2536AF3B16397A0200AD803D /* MainStoryboard.storyboard */,
+				25F2A19A1322DCDC00A33DE4 /* users.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

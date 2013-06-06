@@ -32,6 +32,8 @@
 	
 	// Do any additional setup after loading the view.
 	
+	// TODO: Only show Authorization if credentials not verified
+	
 	// Or this? http://www.wannabegeek.com/?p=168
 	
 	UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipe)];
