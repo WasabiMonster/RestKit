@@ -47,7 +47,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-#warning This sucks
+	// #warning This sucks
 	// TODO: See TableViewCellSubviews sample
 	NSLog(@">>> NEW VIEW!!!");
 	// Do any additional setup after loading the view.
