@@ -10,6 +10,7 @@
 
 @implementation OMAuthViewLayout
 
+
 // Designated initializer
 - (id)initWithFrame:(CGRect)frame
 {
